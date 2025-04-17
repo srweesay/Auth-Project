@@ -4,6 +4,7 @@ const cors = require("cors")
 const cookieParser = require("cookie-parser")
 const mongoose = require("mongoose")
 const authRouter = require("./routers/authRouter")
+const postsRouter = require("./routers/postsRouter")
 const app = express()
 
 
@@ -21,6 +22,8 @@ mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.log(err)
 })
 app.use("/api/auth",authRouter)
+app.use("/api/posts", postsRouter)
+
 app.get("/",(req,res)=>{
     res.json({message:"this is from the server"})
 })
